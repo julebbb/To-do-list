@@ -21,7 +21,9 @@ function headHTML($title, $descript) {
       <link rel="stylesheet" href="public/css/main.css">
     </head>
 
-    <body class="container">
+    <body >
+      <main class="container">
+        <h1 class="text-center" >Tous les projets</h1>
 
     <?php
     $content = ob_get_clean();
@@ -32,7 +34,7 @@ function headHTML($title, $descript) {
 function viewProjects($data)  {
   ob_start(); ?>
 
-  <section class="row">
+  <section class="container">
     <?php
     while ($result = $data->fetch()) {
       echo displayhtml($result);
@@ -51,10 +53,13 @@ function viewProjects($data)  {
 function displayhtml($result) {
   ob_start(); ?>
 
-  <div class="col-12 col-lg-3">
+  <div class="row project">
+    <a href="controller/control_list?index=<?php echo $result['id']; ?>.php" class="col-12 col-lg-3">
       <h2><?php echo $result['name']; ?></h2>
       <p>Date limite : <?php echo $result["deadline"]; ?></p>
-      <a href="index.php?delete=<?php echo $result['id']; ?>">&#10060;</a>
+    </a>
+    <a href="index.php?delete=<?php echo $result['id']; ?>" class="delete">&#10060;</a>
+
   </div>
 
   <?php
@@ -74,18 +79,29 @@ function addButtonProject() {
     return $content;
 }
 
-function formProjects() {
+function formProjects($send) {
   ob_start(); ?>
 
-  <section>
+  <section class="addform">
     <div class="">
-      <a href="index.php?open=false">Annuler</a>
-     <form class="" action="index.php" method="post">
-       <input type="text" name="name" value="">
-       <textarea name="description" rows="8" cols="80"></textarea>
-       <input type="date" name="deadline" value="">
-       <input type="submit" name="envoie" value="Envoyer">
+      <h3>Ajouter un projet :</h3>
+      <a href="index.php?open=false"><i class="fas fa-times-circle"></i></a>
+      <?php if (!empty($send)) {
+         echo "<p>" .  $send . "</p>";
+      } ?>
+
+     <form class="m-auto" action="index.php?open=true" method="post">
+       <label for="name">Nom du projet :</label>
+       <input type="text" name="name" class="form-control">
+
+       <label for="description">Description :</label>
+       <textarea name="description" class="form-control"></textarea>
+
+       <label for="deadline">Date limite :</label>
+       <input type="date" name="deadline" class="form-control">
+       <input type="submit" name="envoie" class="btn btn-primary  d-block" value="Ajouter">
      </form>
+
     </div>
 
   </section>

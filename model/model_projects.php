@@ -13,6 +13,18 @@
     $delete->execute(array(
       'id' => $deleteID
     ));
+    return header('Location: index.php');
   }
 
+  function addProject($name, $descript, $deadline) {
+    require('connect.php');
+
+    $req = $db->prepare('INSERT INTO projects(name, description, deadline) VALUES(:name, :description, :deadline)');
+    $req->execute(array(
+
+      'name' => $name,
+      'description' => $descript,
+      'deadline' => $deadline
+    ));
+  }
  ?>
