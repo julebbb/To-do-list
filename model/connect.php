@@ -1,5 +1,5 @@
 <?php
-  include("../../mdp/mdp.php");
+  include("../mdp/mdp.php");
 
     try
     {
