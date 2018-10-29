@@ -32,28 +32,6 @@ function displayList($id) {
   return $data;
 }
 
-function displayTask($id) {
-  $request = controlConnect()->prepare('SELECT
-    list.id AS l_id,
-    list.name AS l_name,
-    task.id AS t_id,
-    task.id_list,
-    task.name AS t_name,
-    task.done
-    FROM list
-    INNER JOIN list ON projects.id = list.id_project
-    INNER JOIN task ON list.id = task.id_list
-    WHERE list.id = :id');
-
-    $request->execute(array(
-      'id' => $id
-    ));
-
-  $data = $request->fetchAll();
-
-  return $data;
-}
-
 function deleteProject($deleteID, $idProject) {
 
   $delete = controlConnect()->prepare('DELETE FROM list WHERE id=:id');
@@ -61,4 +39,14 @@ function deleteProject($deleteID, $idProject) {
     'id' => $deleteID
   ));
   return header('Location: control_list.php?index=' . $idProject);
+}
+
+function addProject($name, $id_project) {
+
+  $req = controlConnect()->prepare('INSERT INTO list(name, id_project) VALUES(:name, :id_project)');
+  $req->execute(array(
+    'name' => $name,
+    'id_project' => $id_project
+  ));
+
 }

@@ -23,17 +23,19 @@ function headHTML($title, $descript) {
 
     <body >
       <main class="container">
-        <h1 class="text-center" >Toutes les listes</h1>
+
 
     <?php
     $content = ob_get_clean();
     return $content;
 }
 
-function viewProjects($data)  {
+function viewProjects($data, $verif)  {
   ob_start(); ?>
-
   <section class="container">
+    <h1 class="text-center" ><?php echo $verif['name'] ?></h1>
+    <p>Description: <?php echo $verif['descript'] ?></p>
+
     <?php
       echo displayhtml($data);
     ?>
@@ -78,26 +80,20 @@ function addButtonProject($id) {
     return $content;
 }
 
-function formProjects($send) {
+function formProjects($send, $id) {
   ob_start(); ?>
 
   <section class="addform">
     <div class="">
       <h3>Ajouter une liste :</h3>
-      <a href="index.php?open=false"><i class="fas fa-times-circle"></i></a>
+      <a href="control_list.php?index=<?php echo $id ?>&open=false"><i class="fas fa-times-circle"></i></a>
       <?php if (!empty($send)) {
          echo "<p>" .  $send . "</p>";
       } ?>
 
-     <form class="m-auto" action="index.php?open=true" method="post">
+     <form class="m-auto" action="control_list.php?index=<?php echo $id ?>&open=true" method="post">
        <label for="name">Nom du projet :</label>
        <input type="text" name="name" class="form-control">
-
-       <label for="description">Description :</label>
-       <textarea name="description" class="form-control"></textarea>
-
-       <label for="deadline">Date limite :</label>
-       <input type="date" name="deadline" class="form-control">
        <input type="submit" name="envoie" class="btn btn-primary  d-block" value="Ajouter">
      </form>
 

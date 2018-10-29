@@ -20,9 +20,9 @@ if (isset($_GET['index']) AND !empty($_GET['index'])) {
   header('Location: ../index.php');
 }
 
-echo "<pre>";
-print_r($element);
-echo "</pre>";
+// echo "<pre>";
+// print_r($element);
+// echo "</pre>";
 $title = $verif['name'] . " | To do List";
 $descript = "Liste du projet : " . $verif['name'];
 
@@ -48,8 +48,8 @@ if (isset($_POST['name'])) {
     $send = "Le nom de la liste est trop grand ! Rappel: Limité à 255 caractères";
   } else {
     if (preg_match("#[a-z]?[0-9]?#", $name)) {
-      addProject($name);
-      header("Location: control_list.php?index=" . $_GET['index']);
+      addProject($name, $id);
+      header("Location: control_list.php?index=" . $id);
     } else {
       $send = "Il faut un nom pour la liste !";
     }
@@ -65,7 +65,7 @@ if (isset($_GET['delete']) AND ! empty($_GET['delete'])) {
 
 echo headHTML($title, $descript);
 
-echo viewProjects($element);
+echo viewProjects($element, $verif);
 
 //if session open true display formulaire else display button add form
 if (isset($_SESSION['open'])) {
@@ -73,7 +73,7 @@ if (isset($_SESSION['open'])) {
   if ($_SESSION['open'] == 'true') {
 
     //display form for add project
-    echo formProjects($send);
+    echo formProjects($send, $id);
 
    } else {
 
