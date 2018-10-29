@@ -2,12 +2,11 @@
 
   require('connect.php');
   //display projects elements
-  $data = indexConnect()->query('SELECT id, name, description, DATE_FORMAT(deadline, "%d/%m/%Y") AS deadline FROM projects');
+  $data = indexConnect()->query('SELECT id, name, descript, DATE_FORMAT(deadline, "%d/%m/%Y") AS deadline FROM projects');
 
 
 
   function deleteProject($deleteID) {
-    require('connect.php');
 
     $delete = indexConnect()->prepare('DELETE FROM projects WHERE id=:id');
     $delete->execute(array(
@@ -17,13 +16,12 @@
   }
 
   function addProject($name, $descript, $deadline) {
-    require('connect.php');
 
-    $req = indexConnect()->prepare('INSERT INTO projects(name, description, deadline) VALUES(:name, :description, :deadline)');
+    $req = indexConnect()->prepare('INSERT INTO projects(name, descript, deadline) VALUES(:name, :descript, :deadline)');
     $req->execute(array(
 
       'name' => $name,
-      'description' => $descript,
+      'descript' => $descript,
       'deadline' => $deadline
     ));
   }
