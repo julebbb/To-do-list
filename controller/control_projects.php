@@ -22,13 +22,14 @@ if (isset($_GET['open']) AND ! empty($_GET['open'])) {
   }
 }
 
+//post for add project in database
 if (isset($_POST['name']) AND isset($_POST['description']) AND isset($_POST['deadline'])) {
   $name = strip_tags($_POST['name']);
   $descript = strip_tags($_POST['description']);
   $deadline = strip_tags($_POST['deadline']);
 
   if (strlen($name) > 255) {
-    $send = "Le nom du projet est trop grand ! Rappel: Limite à 255 caractères";
+    $send = "Le nom du projet est trop grand ! Rappel: Limité à 255 caractères";
   } else {
     if (preg_match("#[a-z]?[0-9]?#", $name)) {
 

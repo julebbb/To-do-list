@@ -54,11 +54,11 @@ function displayhtml($result) {
   ob_start(); ?>
 
   <div class="row project">
-    <a href="controller/control_list?index=<?php echo $result['id']; ?>.php" class="col-12 col-lg-3">
+    <a href="controller/control_list.php?index=<?php echo $result['id']; ?>" class="col-12 col-lg-3">
       <h2><?php echo $result['name']; ?></h2>
       <p>Date limite : <?php echo $result["deadline"]; ?></p>
     </a>
-    <a href="index.php?delete=<?php echo $result['id']; ?>" class="delete">&#10060;</a>
+    <a href="index.php?delete=<?php echo $result['id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a>
 
   </div>
 
@@ -69,7 +69,7 @@ function displayhtml($result) {
 
 function addButtonProject() {
     ob_start(); ?>
-      <a href="index.php?open=true" class="addproject">
+      <a href="index.php?open=true" title="Ajouter un projet" class="addproject">
         <p>Ajouter un projet</p>
         <i class="fas fa-plus"></i>
       </a>
