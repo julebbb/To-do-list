@@ -32,7 +32,7 @@ function displayList($id) {
   return $data;
 }
 
-function deleteProject($deleteID, $idProject) {
+function deleteList($deleteID, $idProject) {
 
   $delete = controlConnect()->prepare('DELETE FROM list WHERE id=:id');
   $delete->execute(array(
@@ -41,7 +41,7 @@ function deleteProject($deleteID, $idProject) {
   return header('Location: control_list.php?index=' . $idProject);
 }
 
-function addProject($name, $id_project) {
+function addList($name, $id_project) {
 
   $req = controlConnect()->prepare('INSERT INTO list(name, id_project) VALUES(:name, :id_project)');
   $req->execute(array(

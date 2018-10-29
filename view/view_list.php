@@ -55,7 +55,7 @@ function displayhtml($data) {
   ?>
 
   <div class="row list">
-    <a href="controller/control_list.php?index=<?php echo $result['l_id']; ?>" class="col-12 col-lg-3">
+    <a href="control_task.php?index=<?php echo $result['l_id']; ?>" class="col-12 col-lg-3">
       <h2><?php echo $result['l_name']; ?></h2>
     </a>
     <a href="control_list.php?index=<?php echo $result['p_id']; ?>&delete=<?php echo $result['l_id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a>
@@ -71,7 +71,7 @@ function displayhtml($data) {
 function addButtonProject($id) {
     ob_start(); ?>
       <a href="control_list.php?index=<?php echo $id ?>&open=true" title="Ajouter un projet" class="addproject">
-        <p>Ajouter un projet</p>
+        <p>Ajouter une liste :</p>
         <i class="fas fa-plus"></i>
       </a>
 

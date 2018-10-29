@@ -20,9 +20,6 @@ if (isset($_GET['index']) AND !empty($_GET['index'])) {
   header('Location: ../index.php');
 }
 
-// echo "<pre>";
-// print_r($element);
-// echo "</pre>";
 $title = $verif['name'] . " | To do List";
 $descript = "Liste du projet : " . $verif['name'];
 
@@ -48,7 +45,7 @@ if (isset($_POST['name'])) {
     $send = "Le nom de la liste est trop grand ! Rappel: Limité à 255 caractères";
   } else {
     if (preg_match("#[a-z]?[0-9]?#", $name)) {
-      addProject($name, $id);
+      addList($name, $id);
       header("Location: control_list.php?index=" . $id);
     } else {
       $send = "Il faut un nom pour la liste !";
@@ -60,7 +57,7 @@ if (isset($_POST['name'])) {
 
 if (isset($_GET['delete']) AND ! empty($_GET['delete'])) {
   $get_delete = (int) $_GET['delete'];
-  deleteProject($get_delete, $id);
+  deleteList($get_delete, $id);
 }
 
 echo headHTML($title, $descript);
@@ -88,6 +85,3 @@ if (isset($_SESSION['open'])) {
     echo addButtonProject($id);
 
 }
-
-
- ?>
