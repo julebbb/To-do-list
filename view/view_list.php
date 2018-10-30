@@ -33,7 +33,7 @@ function headHTML($title, $descript) {
 function viewProjects($data, $verif)  {
   ob_start(); ?>
   <section class="container">
-    <h1 class="text-center" ><?php echo $verif['name'] ?></h1>
+    <h2 class="text-center" ><?php echo $verif['name'] ?></h2>
     <p>Description: <?php echo $verif['descript'] ?></p>
 
     <?php
@@ -56,7 +56,7 @@ function displayhtml($data) {
 
   <div class="row list">
     <a href="control_task.php?index=<?php echo $result['l_id']; ?>" class="col-12 col-lg-3">
-      <h2><?php echo $result['l_name']; ?></h2>
+      <h3><?php echo $result['l_name']; ?></h3>
     </a>
     <a href="control_list.php?index=<?php echo $result['p_id']; ?>&delete=<?php echo $result['l_id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a>
 
@@ -85,7 +85,7 @@ function formProjects($send, $id) {
 
   <section class="addform">
     <div class="">
-      <h3>Ajouter une liste :</h3>
+      <h4>Ajouter une liste :</h4>
       <a href="control_list.php?index=<?php echo $id ?>&open=false"><i class="fas fa-times-circle"></i></a>
       <?php if (!empty($send)) {
          echo "<p>" .  $send . "</p>";

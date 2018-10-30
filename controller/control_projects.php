@@ -58,6 +58,8 @@ if (isset($_GET['delete']) AND ! empty($_GET['delete'])) {
 
 //display head with title
 echo headHTML($title, $descript);
+
+require('view/header.php');
 //display all projects
 echo viewProjects($data);
 
@@ -85,4 +87,4 @@ if (isset($_SESSION['open'])) {
 
 require('view/footer.php');
 
- ?>
+ 

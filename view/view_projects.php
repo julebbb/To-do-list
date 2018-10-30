@@ -23,8 +23,6 @@ function headHTML($title, $descript) {
 
     <body >
       <main class="container">
-        <h1 class="text-center" >Tous les projets</h1>
-
     <?php
     $content = ob_get_clean();
     return $content;
@@ -33,6 +31,7 @@ function headHTML($title, $descript) {
 
 function viewProjects($data)  {
   ob_start(); ?>
+  <h1 class="text-center" >Tous les projets</h1>
 
   <section class="container">
     <?php
@@ -84,7 +83,7 @@ function formProjects($send) {
 
   <section class="addform">
     <div class="">
-      <h3>Ajouter un projet :</h3>
+      <h4>Ajouter un projet :</h4>
       <a href="index.php?open=false"><i class="fas fa-times-circle"></i></a>
       <?php if (!empty($send)) {
          echo "<p>" .  $send . "</p>";

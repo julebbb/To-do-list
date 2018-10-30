@@ -33,7 +33,7 @@ function headHTML($title, $descript) {
 function viewProjects($data, $verif)  {
   ob_start(); ?>
   <section class="container">
-    <h1 class="text-center" ><?php echo $verif['name'] ?></h1>
+    <h2 class="text-center" ><?php echo $verif['name'] ?></h2>
 
     <table>
       <tr>

@@ -20,10 +20,6 @@ if (isset($_GET['index']) AND !empty($_GET['index'])) {
   header('Location: ../index.php');
 }
 
-echo "<pre>";
-print_r($element);
-echo "</pre>";
-
 $title = $verif['name'] . " | To do List";
 $descript = "Liste du projet : " . $verif['name'];
 
@@ -84,6 +80,13 @@ if (isset($_GET['delete']) AND ! empty($_GET['delete'])) {
 
 echo headHTML($title, $descript);
 
+$id_project = returnJoin($id);
+
+$return = 'control_list.php?index=' . $id_project[0][0];
+$home = '../index.php';
+
+require('../view/header.php');
+
 echo viewProjects($element, $verif);
 
 //if session open true display formulaire else display button add form
@@ -107,3 +110,5 @@ if (isset($_SESSION['open'])) {
     echo addButtonProject($id);
 
 }
+
+require('../view/footer.php');

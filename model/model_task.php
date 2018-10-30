@@ -33,6 +33,26 @@ function displayTask($id) {
   return $data;
 }
 
+function returnJoin($id) {
+
+  //display projects elements with list depend
+  $request = controlConnect()->prepare('SELECT
+    projects.id AS p_id,
+    list.id_project,
+    list.id AS l_id
+    FROM projects
+    INNER JOIN list ON projects.id = list.id_project
+    WHERE list.id = :id');
+
+    $request->execute(array(
+      'id' => $id
+    ));
+
+  $data = $request->fetchAll();
+
+  return $data;
+}
+
 function addTask($name, $deadline, $done, $id_list) {
 
   $req = controlConnect()->prepare('INSERT INTO task(name, deadline, done, id_list) VALUES(:name, :deadline, :done, :id_list)');

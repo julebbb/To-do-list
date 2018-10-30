@@ -62,6 +62,12 @@ if (isset($_GET['delete']) AND ! empty($_GET['delete'])) {
 
 echo headHTML($title, $descript);
 
+$return = '../index.php';
+$home = '../index.php';
+
+require('../view/header.php');
+
+
 echo viewProjects($element, $verif);
 
 //if session open true display formulaire else display button add form
@@ -85,3 +91,5 @@ if (isset($_SESSION['open'])) {
     echo addButtonProject($id);
 
 }
+
+require('../view/footer.php');
