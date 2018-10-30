@@ -31,7 +31,7 @@ function headHTML($title, $descript) {
 
 function viewProjects($data)  {
   ob_start(); ?>
-  <h1 class="text-center" >Tous les projets</h1>
+  <h2 class="text-center" >Tous les projets</h2>
 
   <section class="container">
     <?php
@@ -54,7 +54,7 @@ function displayhtml($result) {
 
   <div class="row project">
     <a href="controller/control_list.php?index=<?php echo $result['id']; ?>" class="col-12 col-lg-3">
-      <h2><?php echo $result['name']; ?></h2>
+      <h3><?php echo $result['name']; ?></h3>
       <p>Date limite : <?php echo $result["deadline"]; ?></p>
     </a>
     <a href="index.php?delete=<?php echo $result['id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a>

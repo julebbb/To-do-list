@@ -17,8 +17,8 @@ function headHTML($title, $descript) {
       <!-- Place favicon.ico in the root directory -->
       <!--32x32 le favicon -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-      <link rel="stylesheet" href="public/css/normalize.css">
-      <link rel="stylesheet" href="public/css/main.css">
+      <link rel="stylesheet" href="../public/css/normalize.css">
+      <link rel="stylesheet" href="../public/css/main.css">
     </head>
 
     <body >
@@ -32,15 +32,15 @@ function headHTML($title, $descript) {
 
 function viewProjects($data, $verif)  {
   ob_start(); ?>
-  <section class="container">
+  <section class="container taskTable">
     <h2 class="text-center" ><?php echo $verif['name'] ?></h2>
 
-    <table>
+    <table class="table table-striped">
       <tr>
         <th></th>
-        <th>Nom de la tâche</th>
-        <th>Date limite</th>
-        <th>Fait ou non</th>
+        <th scope="col">Nom de la tâche</th>
+        <th scope="col">Date limite</th>
+        <th scope="col">Fait ou non</th>
       </tr>
       <?php
         echo displayhtml($data);
@@ -61,7 +61,7 @@ function displayhtml($data) {
   foreach ($data as $result) {
   ?>
   <tr>
-    <td><a href="control_task.php?index=<?php echo $result['l_id']; ?>&delete=<?php echo $result['t_id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a></td>
+    <td><a href="control_task.php?index=<?php echo $result['l_id']; ?>&delete=<?php echo $result['t_id']; ?>" title="Supprimer cette tâche" class="delete">&#10060;</a></td>
     <td><?php echo $result['t_name']; ?></td>
     <td><?php echo $result['deadline']; ?></td>
     <td><?php
@@ -85,8 +85,8 @@ function displayhtml($data) {
 
 function addButtonProject($id) {
     ob_start(); ?>
-      <a href="control_task.php?index=<?php echo $id ?>&open=true" title="Ajouter une tâche" class="addtask">
-        <p>Ajouter une tâche :</p>
+      <a href="control_task.php?index=<?php echo $id ?>&open=true" title="Ajouter une tâche" class="addproject">
+        <p>Ajouter une tâche </p>
         <i class="fas fa-plus"></i>
       </a>
 
@@ -100,7 +100,7 @@ function formProjects($send, $id) {
 
   <section class="addform">
     <div class="">
-      <h3>Ajouter une liste :</h3>
+      <h3>Ajouter une tâche :</h3>
       <a href="control_task.php?index=<?php echo $id ?>&open=false"><i class="fas fa-times-circle"></i></a>
       <?php if (!empty($send)) {
          echo "<p>" .  $send . "</p>";

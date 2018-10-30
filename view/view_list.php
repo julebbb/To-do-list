@@ -17,8 +17,8 @@ function headHTML($title, $descript) {
       <!-- Place favicon.ico in the root directory -->
       <!--32x32 le favicon -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-      <link rel="stylesheet" href="public/css/normalize.css">
-      <link rel="stylesheet" href="public/css/main.css">
+      <link rel="stylesheet" href="../public/css/normalize.css">
+      <link rel="stylesheet" href="../public/css/main.css">
     </head>
 
     <body >
@@ -34,7 +34,7 @@ function viewProjects($data, $verif)  {
   ob_start(); ?>
   <section class="container">
     <h2 class="text-center" ><?php echo $verif['name'] ?></h2>
-    <p>Description: <?php echo $verif['descript'] ?></p>
+    <p class="mb-4 w-100">Description: <?php echo $verif['descript'] ?></p>
 
     <?php
       echo displayhtml($data);
@@ -92,7 +92,7 @@ function formProjects($send, $id) {
       } ?>
 
      <form class="m-auto" action="control_list.php?index=<?php echo $id ?>&open=true" method="post">
-       <label for="name">Nom du projet :</label>
+       <label for="name">Nom de la liste :</label>
        <input type="text" name="name" class="form-control">
        <input type="submit" name="envoie" class="btn btn-primary  d-block" value="Ajouter">
      </form>
