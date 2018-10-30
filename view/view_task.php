@@ -38,9 +38,9 @@ function viewProjects($data, $verif)  {
     <table>
       <tr>
         <th></th>
-        <th>Name task</th>
-        <th>Deadline</th>
-        <th>Done or not</th>
+        <th>Nom de la tâche</th>
+        <th>Date limite</th>
+        <th>Fait ou non</th>
       </tr>
       <?php
         echo displayhtml($data);
@@ -61,12 +61,20 @@ function displayhtml($data) {
   foreach ($data as $result) {
   ?>
   <tr>
-    <td><a href="control_list.php?index=<?php echo $result['p_id']; ?>&delete=<?php echo $result['l_id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a></td>
+    <td><a href="control_task.php?index=<?php echo $result['l_id']; ?>&delete=<?php echo $result['t_id']; ?>" title="Supprimer ce projet" class="delete">&#10060;</a></td>
     <td><?php echo $result['t_name']; ?></td>
     <td><?php echo $result['deadline']; ?></td>
-    <td><?php if ($result['done'] == 1) {
-      echo '<i class="fas fa-check-circle"></i>';
-    } else {echo '<i class="fas fa-clock"></i>';} ?></td>
+    <td><?php
+      if ($result['done'] == 1) {echo
+        '<a href="control_task.php?index=' . $result['l_id'] . '&done=0&id_task='.$result['t_id'].'" title="Valider la tâche" >
+        <i class="fas fa-check-circle"></i>
+        </a>';}
+      else {echo
+        '<a href="control_task.php?index=' . $result['l_id'] . '&done=1&id_task='.$result['t_id'].'" title="Valider la tâche" >
+        <i class="fas fa-clock"></i>
+        </a>';}
+        ?>
+      </td>
   </tr>
 
   <?php
@@ -77,8 +85,8 @@ function displayhtml($data) {
 
 function addButtonProject($id) {
     ob_start(); ?>
-      <a href="control_list.php?index=<?php echo $id ?>&open=true" title="Ajouter un projet" class="addproject">
-        <p>Ajouter une liste :</p>
+      <a href="control_task.php?index=<?php echo $id ?>&open=true" title="Ajouter une tâche" class="addtask">
+        <p>Ajouter une tâche :</p>
         <i class="fas fa-plus"></i>
       </a>
 
@@ -93,14 +101,19 @@ function formProjects($send, $id) {
   <section class="addform">
     <div class="">
       <h3>Ajouter une liste :</h3>
-      <a href="control_list.php?index=<?php echo $id ?>&open=false"><i class="fas fa-times-circle"></i></a>
+      <a href="control_task.php?index=<?php echo $id ?>&open=false"><i class="fas fa-times-circle"></i></a>
       <?php if (!empty($send)) {
          echo "<p>" .  $send . "</p>";
       } ?>
 
-     <form class="m-auto" action="control_list.php?index=<?php echo $id ?>&open=true" method="post">
-       <label for="name">Nom du projet :</label>
+     <form class="m-auto" action="control_task.php?index=<?php echo $id ?>&open=true" method="post">
+       <label for="name">Nom de la tâche :</label>
        <input type="text" name="name" class="form-control">
+
+       <label for="deadline">Date limite :</label>
+       <input type="date" name="deadline" class="form-control">
+
+       <input type="hidden" name="done" value="0">
        <input type="submit" name="envoie" class="btn btn-primary  d-block" value="Ajouter">
      </form>
 
